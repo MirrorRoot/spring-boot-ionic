@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.curso.domain.Categoria;
@@ -14,6 +15,7 @@ import com.curso.repositories.ProdutoRepository;
 
 
 import lombok.extern.slf4j.Slf4j;
+@Profile("devolpment")
 @Configuration
 public class DataLoader  {
 	
