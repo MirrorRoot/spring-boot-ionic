@@ -18,7 +18,7 @@ public class Estado implements Serializable {
 	 */
  private static final long serialVersionUID = 1L;
  
- @Id @GeneratedValue(strategy=GenerationType.AUTO)
+ @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
  private Long id;
  private String name;
  private String sigla;
@@ -52,6 +52,13 @@ public String getSigla() {
 }
 public void setSigla(String sigla) {
 	this.sigla = sigla;
+}
+
+public List<Cidade> getCidades() {
+	return cidades;
+}
+public void setCidades(List<Cidade> cidades) {
+	this.cidades = cidades;
 }
 @Override
 public int hashCode() {
