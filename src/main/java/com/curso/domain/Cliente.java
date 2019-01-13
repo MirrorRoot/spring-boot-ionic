@@ -12,7 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.jmx.export.annotation.ManagedResource;
+
 import com.curso.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Entity
@@ -31,6 +35,8 @@ private int tipo;
 @ElementCollection
 @CollectionTable(name="telefones")
 private Set<String> telefone=new HashSet<>();
+
+@JsonManagedReference
 @OneToMany(mappedBy="cliente")
 private List<Endereco> enderecos=new ArrayList<>();
 
