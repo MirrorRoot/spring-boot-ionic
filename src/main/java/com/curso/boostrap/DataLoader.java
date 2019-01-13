@@ -1,7 +1,11 @@
 package com.curso.boostrap;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +19,18 @@ import com.curso.domain.Cidade;
 import com.curso.domain.Cliente;
 import com.curso.domain.Endereco;
 import com.curso.domain.Estado;
+import com.curso.domain.PagamentoComBoleto;
+import com.curso.domain.Pedido;
 import com.curso.domain.Produto;
+import com.curso.domain.enums.EstadoPagamento;
 import com.curso.domain.enums.TipoCliente;
 import com.curso.repositories.CategoriaRepository;
 import com.curso.repositories.CidadeRepository;
 import com.curso.repositories.ClienteRepository;
 import com.curso.repositories.EnderecoRepository;
 import com.curso.repositories.EstadoRepository;
+import com.curso.repositories.PagamentoRepository;
+import com.curso.repositories.PedidoRepository;
 import com.curso.repositories.ProdutoRepository;
 @Profile("dev")
 @Configuration
@@ -39,6 +48,10 @@ public class DataLoader  {
 	private EstadoRepository estRep;
 	@Autowired
 	private CidadeRepository cidRep;
+	@Autowired
+	private PedidoRepository pedRep;
+	@Autowired
+	private PagamentoRepository pagRep;
 	public DataLoader() {
 		}
 	
@@ -82,6 +95,12 @@ public class DataLoader  {
 		Endereco end1=new Endereco(null, "Avenida Marciano Pires", "3724", "Apto", "Santo Antonio", cid3, cli);
 		Endereco end2=new Endereco(null, "Avenida Faria Pereira", "372", "casa", "Santo Cristovao", cid3, cli);
 		cli.setEnderecos(Arrays.asList(end1,end2));
+	
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String dateTime = LocalDateTime.now().format(formatter);
+        Pedido ped=new Pedido(null, LocalDateTime.now(), cli, end1);
+        PagamentoComBoleto pg=new PagamentoComBoleto(null, EstadoPagamento.CANCELADO, ped, LocalDateTime.now(), LocalDateTime.of(2019, 01, 25, 10,20));
+        ped.setPagamento(pg);
 		return args->{
 		this.catRep.saveAll(Arrays.asList(cat1,cat2));
 		this.prodRep.saveAll(Arrays.asList(p1,p2,p3));
@@ -89,6 +108,8 @@ public class DataLoader  {
 		this.cidRep.saveAll(Arrays.asList(cid1,cid2,cid3,cid4,cid5));
 		this.cliRep.save(cli);
 		this.endRep.saveAll(Arrays.asList(end1,end2));
+	    this.pedRep.save(ped);
+
 		};
 	}
 	

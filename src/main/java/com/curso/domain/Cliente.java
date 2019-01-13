@@ -36,6 +36,9 @@ private int tipo;
 @CollectionTable(name="telefones")
 private Set<String> telefone=new HashSet<>();
 
+@OneToMany(mappedBy="cliente")
+private List<Pedido> pedidos;
+
 @JsonManagedReference
 @OneToMany(mappedBy="cliente")
 private List<Endereco> enderecos=new ArrayList<>();
@@ -90,9 +93,6 @@ public TipoCliente getTipo() {
 	return TipoCliente.toTipoCliente(this.tipo);
 }
 
-public void setTipo(TipoCliente tipo) {
-	this.tipo = tipo.getCod();
-}
 
 public Set<String> getTelefones() {
 	return telefone;
@@ -109,6 +109,25 @@ public List<Endereco> getEnderecos() {
 public void setEnderecos(List<Endereco> enderecos) {
 	this.enderecos = enderecos;
 }
+
+
+public Set<String> getTelefone() {
+	return telefone;
+}
+
+public void setTelefone(Set<String> telefone) {
+	this.telefone = telefone;
+}
+
+public List<Pedido> getPedidos() {
+	return pedidos;
+}
+
+public void setPedidos(List<Pedido> pedidos) {
+	this.pedidos = pedidos;
+}
+
+
 
 @Override
 public int hashCode() {
