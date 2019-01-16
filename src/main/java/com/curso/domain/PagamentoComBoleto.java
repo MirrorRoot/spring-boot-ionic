@@ -10,10 +10,6 @@ import com.curso.domain.enums.EstadoPagamento;
 @Entity
 public class PagamentoComBoleto extends Pagamento {
  
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private LocalDateTime dataDeVencimento;
 	private LocalDateTime dataDePagamento;
 	public PagamentoComBoleto() {

@@ -95,7 +95,8 @@ public class DataLoader  {
 		Endereco end1=new Endereco(null, "Avenida Marciano Pires", "3724", "Apto", "Santo Antonio", cid3, cli);
 		Endereco end2=new Endereco(null, "Avenida Faria Pereira", "372", "casa", "Santo Cristovao", cid3, cli);
 		cli.setEnderecos(Arrays.asList(end1,end2));
-       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String dateTime = LocalDateTime.now().format(formatter);
         Pedido ped=new Pedido(null, LocalDateTime.now(), cli, end1);
         PagamentoComBoleto pg=new PagamentoComBoleto(null, EstadoPagamento.CANCELADO, ped, LocalDateTime.now(), LocalDateTime.of(2019, 01, 25, 10,20));
