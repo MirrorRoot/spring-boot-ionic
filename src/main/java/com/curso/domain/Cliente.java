@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
 import com.curso.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -33,10 +35,11 @@ private int tipo;
 @CollectionTable(name="telefones")
 private Set<String> telefone=new HashSet<>();
 
+@JsonIgnore
 @OneToMany(mappedBy="cliente")
 private List<Pedido> pedidos;
 
-@JsonManagedReference
+
 @OneToMany(mappedBy="cliente")
 private List<Endereco> enderecos=new ArrayList<>();
 

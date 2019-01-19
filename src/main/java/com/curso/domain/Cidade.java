@@ -23,7 +23,7 @@ private static final long serialVersionUID = 1L;
  private Long id;
  private String Name;
  
- @JsonManagedReference
+ 
  @ManyToOne
  @JoinColumn(name="estado_id")
  private Estado estado;

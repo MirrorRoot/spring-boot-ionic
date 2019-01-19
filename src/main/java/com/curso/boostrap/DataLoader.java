@@ -19,6 +19,7 @@ import com.curso.domain.Cidade;
 import com.curso.domain.Cliente;
 import com.curso.domain.Endereco;
 import com.curso.domain.Estado;
+import com.curso.domain.ItemPedido;
 import com.curso.domain.PagamentoComBoleto;
 import com.curso.domain.Pedido;
 import com.curso.domain.Produto;
@@ -29,6 +30,7 @@ import com.curso.repositories.CidadeRepository;
 import com.curso.repositories.ClienteRepository;
 import com.curso.repositories.EnderecoRepository;
 import com.curso.repositories.EstadoRepository;
+import com.curso.repositories.ItemPedidoRepository;
 import com.curso.repositories.PagamentoRepository;
 import com.curso.repositories.PedidoRepository;
 import com.curso.repositories.ProdutoRepository;
@@ -52,11 +54,13 @@ public class DataLoader  {
 	private PedidoRepository pedRep;
 	@Autowired
 	private PagamentoRepository pagRep;
+	@Autowired
+	private ItemPedidoRepository itRep;
 	public DataLoader() {
 		}
 	
 	@Bean
-	CommandLineRunner initTableCategoria() {
+	CommandLineRunner initTableDatabase() {
 		Categoria cat1=new Categoria();
 	    Categoria cat2=new Categoria();		
 	    cat1.setNome("Informatica");
@@ -100,6 +104,9 @@ public class DataLoader  {
         Pedido ped=new Pedido(null, LocalDateTime.now(), cli, end1);
         PagamentoComBoleto pg=new PagamentoComBoleto(null, EstadoPagamento.CANCELADO, ped, LocalDateTime.now(), LocalDateTime.of(2019, 01, 25, 10,20));
         ped.setPagamento(pg);
+        ItemPedido item=new ItemPedido(ped, p1, 0.10, 2, 500);
+        p1.getItens().add(item);
+        ped.getItens().add(item);
 		return args->{
 		this.catRep.saveAll(Arrays.asList(cat1,cat2));
 		this.prodRep.saveAll(Arrays.asList(p1,p2,p3));
@@ -108,7 +115,7 @@ public class DataLoader  {
 		this.cliRep.save(cli);
 		this.endRep.saveAll(Arrays.asList(end1,end2));
 	    this.pedRep.save(ped);
-
+        this.itRep.save(item);
 		};
 	}
 	
