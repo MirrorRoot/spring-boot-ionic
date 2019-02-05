@@ -18,7 +18,7 @@ public class Cidade implements Serializable {
 private static final long serialVersionUID = 1L;
 
 @Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
- private Long id;
+ private Integer id;
  private String Name;
  
  
@@ -29,18 +29,18 @@ private static final long serialVersionUID = 1L;
  public Cidade() {
 	// TODO Auto-generated constructor stub
 }
-public Cidade(Long id, String name, Estado estado) {
+public Cidade( Integer id, String name, Estado estado) {
 	super();
 	this.id = id;
 	Name = name;
 	this.estado = estado;
 }
 
-public Long getId() {
+public Integer getId() {
 	return id;
 }
 
-public void setId(Long id) {
+public void setId(Integer id) {
 	this.id = id;
 }
 

@@ -96,8 +96,8 @@ public class DataLoader  {
 		tel.add("98849-8877");
 		tel.add("3831-5066");
 		Cliente cli=new Cliente(null, "Maria da Silva", "07137155521", "maria@gmail.com", TipoCliente.PESSOAFISICA, tel);
-		Endereco end1=new Endereco(null, "Avenida Marciano Pires", "3724", "Apto", "Santo Antonio", cid3, cli);
-		Endereco end2=new Endereco(null, "Avenida Faria Pereira", "372", "casa", "Santo Cristovao", cid3, cli);
+		Endereco end1=new Endereco(null, "Avenida Marciano Pires", "3724", "Apto", "Santo Antonio","38740-000", cid3, cli);
+		Endereco end2=new Endereco(null, "Avenida Faria Pereira", "372", "casa", "Santo Cristovao","38740-000", cid3, cli);
 		cli.setEnderecos(Arrays.asList(end1,end2));
        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String dateTime = LocalDateTime.now().format(formatter);

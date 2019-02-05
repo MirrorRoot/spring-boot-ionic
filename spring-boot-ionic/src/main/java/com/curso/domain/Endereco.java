@@ -24,7 +24,8 @@ private Long id;
 private String logradouro;
 private String numero;
 private String complemento;
-private String bairro;
+private String bairro; 
+private String cep;
 @OneToOne
 private Cidade cidade;
 
@@ -35,7 +36,7 @@ private Cliente cliente;
 
 
 
-public Endereco(Long id, String logradouro, String numero, String complemento, String bairro, Cidade cidade,
+public Endereco(Long id, String logradouro, String numero, String complemento, String bairro, String cep ,Cidade cidade,
 		Cliente cliente) {
 	super();
 	this.id = id;
@@ -43,6 +44,7 @@ public Endereco(Long id, String logradouro, String numero, String complemento, S
 	this.numero = numero;
 	this.complemento = complemento;
 	this.bairro = bairro;
+	this.cep=cep;
 	this.cidade = cidade;
 	this.cliente = cliente;
 }

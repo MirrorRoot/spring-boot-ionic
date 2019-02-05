@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.curso.domain.enums.TipoCliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,6 +39,7 @@ private List<Pedido> pedidos;
 
 
 @OneToMany(mappedBy="cliente")
+@Cascade(CascadeType.ALL)
 private List<Endereco> enderecos=new ArrayList<>();
 
 public Cliente() {
@@ -50,6 +54,16 @@ public Cliente(Long id, String nome, String cpfOuCnpj, String email, TipoCliente
 	this.email = email;
 	this.tipo = tipo.getCod();
 	this.telefone = telefones;
+}
+
+
+public Cliente(Long id, String nome, String cpfOuCnpj, String email, TipoCliente tipo) {
+	super();
+	this.id = id;
+	this.nome = nome;
+	this.cpfOuCnpj = cpfOuCnpj;
+	this.email = email;
+	this.tipo = tipo.getCod();
 }
 
 public Long getId() {
